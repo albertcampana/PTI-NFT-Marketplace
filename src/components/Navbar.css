@@ -1,0 +1,19 @@
+/* 
+FEFFFE
+E9EBF8
+B4B8C5
+A5A299
+8D818C
+*/
+
+.navbar, .navbar-brand, .navbar-nav, .nav-item, .account {
+    background-color: #8D818C;
+    color: #FEFFFE;
+}
+
+.round img {
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -o-border-radius:50%;
+}

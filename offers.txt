@@ -1,0 +1,113 @@
+async getOffers() {
+    let offerId = await this.state.contract.methods.ofertaId().call()
+    //console.log('offerId', offerId)
+    
+    for (var j = 0; j < offerId; j++) {
+        const offer = await this.state.contract.methods.ofertes(j).call()
+        //console.log('offer', offer)
+
+        if(offer.owner === this.state.account && offer.pendent) {
+            //console.log('offer', offer)
+            //console.log('nft', this.state.nft)
+            
+            this.setState({
+                offers: [...this.state.offers, offer]
+            })
+        }
+        
+        
+    }
+    console.log(this.state.offers)
+}
+/*{'id':0, 'price': 3, 'owner': '0xOwner1', 'buyer': '0x000001', 'idToken': 0},
+    {'id':1, 'price': 3, 'owner': '0xOwner2', 'buyer': '0x000002', 'idToken': 2},
+    {'id':2, 'price': 3, 'owner': '0xOwner3', 'buyer': '0x000003', 'idToken': 4},
+    {'id':3, 'price': 3, 'owner': '0xOwner4', 'buyer': '0x000004', 'idToken': 5}*/
+
+
+acceptOffer = (offerId) => {
+    console.log("accept offer with id ", offerId)
+    this.state.contract.methods.acceptOffer(offerId).send({ from: this.state.account }).once('receipt', (receipt) => {
+        //console.log('oferta', receipt.events)
+        //this.setState({ loading: false })
+    })
+}
+
+rejectOffer = (offerId) => {
+    console.log("reject offer with id ", offerId)
+    this.state.contract.methods.declineOffer(offerId).send({ from: this.state.account }).once('receipt', (receipt) => {
+        //console.log('oferta', receipt.events)
+        //this.setState({ loading: false })
+    })
+}
+
+loadBlockchainData() ->
+    // get offers
+    this.getOffers()
+
+state -> 
+    offers: [],
+    this.acceptOffer = this.acceptOffer.bind(this)
+    this.rejectOffer = this.rejectOffer.bind(this)
+
+render ->
+	offers={this.state.offers}
+    acceptOffer={this.acceptOffer}
+    rejectOffer={this.rejectOffer}
+
+css ->
+    /* offers */
+    .offer {
+        width: 10%
+    }
+
+    .accept-btn {
+        background-color: rgba(115, 245, 82, 0.932);
+    }
+
+    .reject-btn {
+        background-color: rgb(255, 60, 60);
+    }
+
+Main.js ->
+    import Offers from './Offers'
+    {this.props.offers.length === 0? null:<Offers 
+        offers={this.props.offers} 
+        nft={this.props.nft}
+        acceptOffer={this.props.acceptOffer}
+        rejectOffer={this.props.rejectOffer}/>}
+
+Offers.js ->
+import React, { Component } from 'react';
+
+class Offers extends Component {
+
+	render() {
+		return (
+            <div>
+                {/* offertes */}
+                <h1>Offers</h1>
+                <div className='row m-0 p-0'> {this.props.offers.map((offer, key) => {
+                    return (
+                        <div key={key}className='card offer'>
+                            <div className="nft-image-container text-center pb-4">
+                                <img className='nft-image' src={`https://ipfs.infura.io/ipfs/${this.props.nft[offer.idToken-1].hash}`}/>
+                            </div>
+                            <p>Buyer: {offer.buyer}</p>
+                            <p>Price: {offer.price}</p>
+
+                            <div className='row m-0 p-0'>
+                                <button className='btn p-1 m-0 accept-btn' onClick={this.props.acceptOffer.bind(this, offer.id)}>OK</button>
+                                <button className='btn p-1 m-0 reject-btn' onClick={this.props.rejectOffer.bind(this, offer.id)}>X</button>
+                            </div>
+                            
+                        </div>
+                    )
+                })}
+                </div>
+            </div>
+		);
+	}
+}
+
+export default Offers;

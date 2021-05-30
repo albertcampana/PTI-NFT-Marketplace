@@ -1,0 +1,185 @@
+/* 
+--clar
+FEFFFE
+E9EBF8
+B4B8C5
+A5A299
+8D818C
+--fosc
+*/
+
+.main {
+	padding-top: 80px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Museu */
+
+.artist-name {
+    font-weight: 500;
+    font-size: larger;
+}
+
+.nft {
+	width: 20%;
+	background-color:rgb(224, 224, 224);
+    position: relative;
+}
+
+.nft:hover {
+	-webkit-transform: scale(1.02);
+	-ms-transform: scale(1.02);
+	transform: scale(1.02);
+}
+
+.collection-card {
+	width: 100%;
+}
+
+.price-btn-div {
+    position: absolute;
+    bottom: 0;
+	width: 95%;
+    height: 45px;
+}
+
+.price-tag {
+    height: 40px;
+	width: 65%;
+    line-height: 40px;
+    vertical-align: center;
+    font-weight: bolder;
+}
+
+.buy-btn {
+	width: 35%;
+    background-color: #b4b8c5;
+    font-weight: 500;
+}
+
+/* NFTs */
+.nft-image-container {
+	height: 70%;
+}
+
+.img {
+    vertical-align: middle;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.nft-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.nft-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+.nft-description {
+	text-align: center;
+}
+
+/* Formularis */
+.forms {
+    width: 25%;
+}
+
+.form-btn {
+    padding: 1% 25%;
+    background-color: #b4b8c5;
+    font-weight: 500;
+}
+
+.name-form {
+    width: 100%;
+}
+
+/* Owned nfts */
+.owned-nfts {
+    width: 71%;
+}
+
+.owned-nft {
+    width: 30%;
+	background-color:rgb(224, 224, 224);
+}
+
+.owned-nft:hover {
+	-webkit-transform: scale(1.02);
+	-ms-transform: scale(1.02);
+	transform: scale(1.02);
+}
+
+.nft-author-collection {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8D818C;
+}
+
+/* Upload Form */
+.upload-form {
+    width: 100%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-file-label {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+    line-height: 75px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    font-weight: 700;
+    color: black;
+    background-color: #E9EBF8;
+}
+
+.uploaded-file-label {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+    line-height: 75px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    font-weight: 700;
+    color: black;
+    background-color: #65f56d;
+}
+
+.upload-file-label:hover {
+    background-color: #B4B8C5;
+    cursor: pointer;
+}
+
+.btn {
+    height: 40px;
+    padding: 1% 25%;
+    background-color: #b4b8c5;
+    font-weight: 500;
+}
+
+/* Tests */
+.red-background {
+    background-color: red;
+}
